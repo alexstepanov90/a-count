@@ -1,0 +1,230 @@
+/* ============================================================
+   A-Count — тема в духе Pyrus
+   Глубокий тёмно-зелёный (pine) для навигации, чистое светлое
+   полотно, бирюзовые действия, приглушённая горчица в акцентах.
+   ============================================================ */
+
+:root {
+  --ink: #1e2726;
+  --ink-soft: #5b6b69;
+  --paper: #f4f5f2;
+  --card: #ffffff;
+  --line: #e1e4df;
+  --pine: #0e4744;        /* тёмно-зелёный Pyrus-сайдбар */
+  --pine-2: #14605c;      /* ховер */
+  --pine-3: #0a3735;
+  --teal: #2c8c86;        /* основные действия */
+  --teal-2: #257671;
+  --mustard: #d9a521;     /* тёмно-жёлтый акцент */
+  --mustard-soft: #faf3dd;
+  --green: #1d7a4f;
+  --blue: #2a6f9f;
+  --amber: #9a6b0a;
+  --red: #b3372f;
+  --radius: 8px;
+  font-size: 14px;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+#root { min-height: 100vh; }
+.layout { display: flex; min-height: 100vh; }
+
+/* --- Навигация (pine) --- */
+.sidebar {
+  width: 224px; flex: 0 0 224px;
+  background: linear-gradient(180deg, var(--pine) 0%, var(--pine-3) 100%);
+  color: #dfeae8;
+  display: flex; flex-direction: column;
+  padding: 16px 0;
+}
+.brand {
+  display: flex; align-items: center; justify-content: center;
+  padding: 6px 14px 16px;
+  border-bottom: 1px solid rgba(255,255,255,.12);
+  margin-bottom: 10px;
+}
+.brand b { font-size: 18px; letter-spacing: .3px; display: block; color: #fff; }
+.brand span { font-size: 11px; color: #9fc0bc; display: block; }
+.nav a {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 9px 16px; margin: 1px 8px; color: #cfe0dd; text-decoration: none; font-size: 14px;
+  border-radius: 8px;
+}
+.nav a:hover { background: var(--pine-2); color: #fff; }
+.nav a.active { background: var(--teal); color: #fff; box-shadow: inset 0 0 0 1px rgba(255,255,255,.15); }
+.nav .count {
+  font-size: 11px; background: var(--mustard); color: #3c2f05; border-radius: 10px;
+  padding: 1px 7px; font-variant-numeric: tabular-nums; font-weight: 600;
+}
+.sidebar .foot { margin-top: auto; padding: 12px 16px 0; font-size: 11px; color: #7fa39f; }
+
+/* --- Контент --- */
+.content { flex: 1; padding: 26px 32px 60px; max-width: 1220px; min-width: 0; }
+.page-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 18px; flex-wrap: wrap; }
+h1 { font-size: 21px; margin: 0; font-weight: 650; color: var(--pine); }
+h2 { font-size: 15px; margin: 22px 0 10px; color: var(--pine); font-weight: 650; }
+.sub { color: var(--ink-soft); font-size: 13px; margin-top: 4px; }
+a { color: var(--teal-2); }
+
+/* --- Кнопки --- */
+.btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  border: 1px solid var(--line); background: var(--card); color: var(--ink);
+  border-radius: var(--radius); padding: 7px 14px; font-size: 14px; cursor: pointer;
+  text-decoration: none; font-family: inherit;
+}
+.btn:hover { border-color: var(--teal); color: var(--teal-2); }
+.btn.primary { background: var(--teal); border-color: var(--teal); color: #fff; }
+.btn.primary:hover { background: var(--teal-2); color: #fff; }
+.btn.brass { background: var(--mustard); border-color: var(--mustard); color: #3c2f05; }
+.btn.danger { color: var(--red); border-color: #e4c8c5; }
+.btn.danger:hover { border-color: var(--red); color: var(--red); }
+.btn.small { padding: 4px 10px; font-size: 13px; }
+.btn:disabled { opacity: .45; cursor: default; }
+
+/* --- Таблицы --- */
+table.list { width: 100%; border-collapse: collapse; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+table.list th {
+  text-align: left; font-size: 11.5px; text-transform: uppercase; letter-spacing: .05em;
+  color: var(--ink-soft); font-weight: 600; padding: 9px 12px; border-bottom: 2px solid var(--line);
+  background: #fafbf8;
+}
+table.list td { padding: 9px 12px; border-bottom: 1px solid #eef0ec; font-size: 14px; vertical-align: middle; }
+table.list tr:last-child td { border-bottom: none; }
+table.list tr.clickable { cursor: pointer; }
+table.list tr.clickable:hover td { background: var(--mustard-soft); }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+/* --- Статусы --- */
+.chip {
+  display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: .04em;
+  border-radius: 20px; padding: 2px 9px; text-transform: uppercase;
+}
+.chip.draft { color: var(--amber); background: #faf1d9; }
+.chip.issued { color: var(--blue); background: #e3eef6; }
+.chip.paid { color: var(--green); background: #e0f0e8; }
+.chip.in { color: var(--ink-soft); background: #eceeeb; }
+
+/* --- Формы, карточки --- */
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 18px; }
+.grid { display: grid; gap: 12px 16px; }
+.grid.c2 { grid-template-columns: 1fr 1fr; }
+.grid.c3 { grid-template-columns: 1fr 1fr 1fr; }
+.field label { display: block; font-size: 12px; color: var(--ink-soft); margin-bottom: 4px; }
+input, select, textarea {
+  width: 100%; border: 1px solid #ccd3cf; border-radius: 7px;
+  padding: 7px 10px; font-size: 14px; font-family: inherit; background: #fff; color: var(--ink);
+}
+input:focus, select:focus, textarea:focus { outline: 2px solid var(--teal); outline-offset: -1px; border-color: var(--teal); }
+input.num { text-align: right; font-variant-numeric: tabular-nums; }
+.row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.toolbar { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 14px; }
+.spacer { flex: 1; }
+.muted { color: var(--ink-soft); font-size: 13px; }
+.total-line { font-size: 15px; text-align: right; margin-top: 8px; font-variant-numeric: tabular-nums; }
+.total-line b { font-size: 17px; }
+
+/* --- Модальное окно --- */
+.modal-back {
+  position: fixed; inset: 0; background: rgba(14,71,68,.45);
+  display: flex; align-items: flex-start; justify-content: center; padding: 40px 16px; z-index: 50;
+  overflow-y: auto;
+}
+.modal { background: var(--card); border-radius: 12px; padding: 22px; width: 100%; max-width: 640px; box-shadow: 0 12px 44px rgba(6,35,33,.35); }
+.modal h2 { margin-top: 0; }
+
+/* --- Дашборд --- */
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(185px, 1fr)); gap: 12px; margin-bottom: 22px; }
+.stat {
+  background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px;
+  border-top: 3px solid var(--mustard);
+}
+.stat .v { font-size: 21px; font-weight: 650; font-variant-numeric: tabular-nums; color: var(--pine); }
+.stat .l { font-size: 12px; color: var(--ink-soft); margin-top: 2px; }
+
+.empty { padding: 40px; text-align: center; color: var(--ink-soft); background: var(--card); border: 1px dashed #cdd4d0; border-radius: 10px; }
+
+/* --- Экран регистрации --- */
+.welcome-back {
+  min-height: 100vh; display: flex; align-items: flex-start; justify-content: center;
+  background: linear-gradient(160deg, var(--pine) 0%, var(--pine-3) 60%, #062a28 100%);
+  padding: 40px 16px;
+}
+.welcome {
+  background: var(--card); border-radius: 14px; padding: 28px; width: 100%; max-width: 720px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.45);
+}
+.agreement {
+  height: 260px; overflow-y: auto; border: 1px solid var(--line); border-radius: 8px;
+  padding: 12px 14px; font-size: 12.5px; background: #fbfcfa; color: #333;
+}
+.agreement p { margin: 0 0 10px; }
+
+/* --- Мобильная адаптация --- */
+@media (max-width: 800px) {
+  .layout { flex-direction: column; }
+  .sidebar { width: 100%; flex: none; flex-direction: row; overflow-x: auto; padding: 0; align-items: center; }
+  .brand { border-bottom: none; margin: 0; padding: 10px 14px; white-space: nowrap; }
+  .brand span { display: none; }
+  .nav { display: flex; }
+  .nav a { white-space: nowrap; margin: 6px 2px; padding: 8px 10px; }
+  .nav .count { display: none; }
+  .sidebar .foot { display: none; }
+  .content { padding: 16px; }
+  .grid.c2, .grid.c3 { grid-template-columns: 1fr; }
+}
+/* ============================================================
+   ПЕЧАТНЫЕ ФОРМЫ
+   Печатная разметка живёт в #print-root (портал вне интерфейса),
+   поэтому при печати интерфейс скрывается целиком, а форма — нет.
+   ============================================================ */
+#print-root { display: none; }
+
+@media print {
+  body { background: #fff; }
+  #root, .no-print { display: none !important; }
+  #print-root { display: block; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  @page { size: A4 portrait; margin: 12mm 10mm; }
+}
+
+.print-area { font-family: "Times New Roman", Times, serif; color: #000; font-size: 11pt; line-height: 1.25; }
+
+.print-area h3 { font-size: 14pt; margin: 10pt 0 6pt; text-align: center; }
+.print-area .doc-title { font-size: 13pt; font-weight: bold; margin: 12pt 0 8pt; }
+.print-area table.p { width: 100%; border-collapse: collapse; font-size: 10.5pt; }
+.print-area table.p th, .print-area table.p td { border: 1px solid #000; padding: 3pt 5pt; vertical-align: top; }
+.print-area table.p th { font-weight: bold; text-align: center; }
+.print-area table.bare td { border: none; padding: 2pt 4pt; }
+.print-area .pnum { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.print-area .small { font-size: 9.5pt; }
+.print-area .warn { font-size: 9pt; border: 1px solid #000; padding: 4pt 6pt; margin: 6pt 0; }
+.print-area .sign-row { display: flex; justify-content: space-between; margin-top: 26pt; gap: 30pt; }
+.print-area .sign { flex: 1; font-size: 10.5pt; }
+.print-area .sign .line { border-bottom: 1px solid #000; height: 18pt; margin: 4pt 0 2pt; }
+.print-area hr.cut { border: none; border-top: 1px dashed #000; margin: 10pt 0; }
+.print-area .form-ref { font-size: 8pt; text-align: right; line-height: 1.2; }
+.print-area .hdr-table td { border: none; padding: 1pt 0; vertical-align: bottom; font-size: 10pt; }
+.print-area .hdr-table .fill { border-bottom: 1px solid #000; width: 100%; padding-left: 4pt; }
+.print-area .hdr-table .cap { font-size: 7.5pt; text-align: center; color: #000; }
+.print-area table.p { page-break-inside: auto; }
+.print-area table.p tr { page-break-inside: avoid; }
+.print-area table.p th { font-weight: normal; font-size: 8.5pt; padding: 2pt 3pt; }
+.print-area table.p td { font-size: 9.5pt; }
+.print-area .colnum td { text-align: center; font-size: 8pt; padding: 0 2pt; }
+.print-area .sig-wrap { position: relative; }
+.print-area img.sig-img { position: absolute; height: 42pt; bottom: -2pt; left: 34%; z-index: 2; }
+.print-area img.stamp-img { position: absolute; height: 88pt; bottom: -34pt; left: 58%; z-index: 1; opacity: .92; }
+
+/* Внешне-безрамочные таблицы подписей в печатных формах */
+.print-area table.bare-outer, .print-area table.bare-outer td { border: none; }
+.print-area table.bare-outer { width: 100%; border-collapse: collapse; font-size: 10.5pt; }
+.print-area table.bare-outer td { padding: 2pt 6pt 2pt 0; }
