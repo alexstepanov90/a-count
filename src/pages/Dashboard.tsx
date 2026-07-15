@@ -9,7 +9,7 @@ export default function Dashboard() {
   const payments = useLiveQuery(() => db.payments.toArray(), []) ?? []
   const accounts = useLiveQuery(() => db.bankAccounts.toArray(), []) ?? []
   const counterparties = useLiveQuery(() => db.counterparties.toArray(), []) ?? []
-  const settings = useLiveQuery(() => db.settings.toCollection().first(), [])
+  const settings = useLiveQuery(() => db.settings.toArray(), [])?.[0]
 
   const year = new Date().getFullYear().toString()
   const outYear = all.filter(d => d.direction === 'out' && d.date.startsWith(year) && d.status !== 'draft')

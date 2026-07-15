@@ -1,8 +1,9 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import { viteSingleFile } from 'vite-plugin-singlefile'
 
-// https://vitejs.dev/config/
+// Сборка в ОДИН html-файл: работает двойным кликом, без установки и без сервера
 export default defineConfig({
-  plugins: [react()],
-  base: '/a-count/',
+  plugins: [react(), viteSingleFile()],
+  base: './',
 })

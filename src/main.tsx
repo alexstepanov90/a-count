@@ -20,14 +20,17 @@ import SettingsPage from './pages/Settings'
 function App() {
   const cCount = useLiveQuery(() => db.counterparties.count(), []) ?? 0
   const dCount = useLiveQuery(() => db.docs.count(), []) ?? 0
-  const settings = useLiveQuery(() => db.settings.toCollection().first(), [])
+  // toArray() (не first()) — чтобы отличить "запрос ещё выполняется" (undefined)
+  // от "в базе действительно пусто, это новый пользователь" ([])
+  const settingsArr = useLiveQuery(() => db.settings.toArray(), [])
+  const settings = settingsArr?.[0]
   const [, force] = React.useReducer(x => x + 1, 0)
 
   React.useEffect(() => {
     if (settings) setCurrency(settings.currencySymbol, settings.currencyCode)
   }, [settings?.currencySymbol, settings?.currencyCode])
 
-  if (settings === undefined) return null // база ещё открывается
+  if (settingsArr === undefined) return null // база ещё открывается (доля секунды)
   if (!settings?.agreementAcceptedAt) {
     return <Welcome onDone={() => force()} />
   }
